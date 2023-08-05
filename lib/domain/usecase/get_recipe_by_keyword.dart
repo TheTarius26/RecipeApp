@@ -17,7 +17,7 @@ class GetRecipeByKeyword implements UseCase<RecipeResponse, RecipeParam> {
   Future<RecipeResponse> call(RecipeParam params) async {
     final result = await _recipeRepository.getRecipes(
       keyword: params.keyword,
-      imageSize: params.imageSize,
+      imageSize: params.imageSize.upperName,
     );
     return result.fold(
       (l) => throw l,

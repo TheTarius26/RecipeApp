@@ -30,11 +30,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     try {
       emit(state.copyWith(status: BlocStatus.loading));
-      final result = await _getRecipeByKeyword(
-        RecipeParam(
-          keyword: 'chicken',
-        ),
-      );
+      final result = await _getRecipeByKeyword(RecipeParam());
       loggerDebug(result.recipes.length.toString());
       emit(
         state.copyWith(

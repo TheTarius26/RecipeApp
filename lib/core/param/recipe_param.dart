@@ -1,17 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+enum ImageSize {
+  thumbnail,
+  small,
+  regular,
+  large,
+}
+
+extension ImageSizeExtension on ImageSize {
+  String get upperName => name.toUpperCase();
+}
+
 class RecipeParam {
   final String keyword;
-  final String imageSize;
+  final ImageSize imageSize;
+
   RecipeParam({
-    required this.keyword,
-    this.imageSize = 'SMALL',
+    this.keyword = '',
+    this.imageSize = ImageSize.regular,
   });
 
   RecipeParam copyWith({
     String? keyword,
-    String? imageSize,
+    ImageSize? imageSize,
   }) {
     return RecipeParam(
       keyword: keyword ?? this.keyword,
@@ -22,14 +34,21 @@ class RecipeParam {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'keyword': keyword,
-      'imageSize': imageSize,
+      'imageSize': imageSize.upperName,
     };
   }
 
   factory RecipeParam.fromMap(Map<String, dynamic> map) {
+    var imageSize = ImageSize.regular;
+    for (final item in ImageSize.values) {
+      if (item.name == map['imageSize'] as String) {
+        imageSize = item;
+        break;
+      }
+    }
     return RecipeParam(
       keyword: map['keyword'] as String,
-      imageSize: map['imageSize'] as String,
+      imageSize: imageSize,
     );
   }
 
