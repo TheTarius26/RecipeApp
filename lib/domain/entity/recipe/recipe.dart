@@ -21,8 +21,6 @@ class Recipe {
     required this.ingredientLines,
     required this.ingredients,
     required this.calories,
-    required this.totalCO2Emissions,
-    required this.co2EmissionsClass,
     required this.totalWeight,
     required this.totalTime,
     required this.cuisineType,
@@ -43,8 +41,6 @@ class Recipe {
   final List<String> ingredientLines;
   final List<Ingredient> ingredients;
   final double calories;
-  final double totalCO2Emissions;
-  final String co2EmissionsClass;
   final double totalWeight;
   final double totalTime;
   final List<String> cuisineType;
@@ -89,8 +85,6 @@ class Recipe {
       ingredientLines: ingredientLines ?? this.ingredientLines,
       ingredients: ingredients ?? this.ingredients,
       calories: calories ?? this.calories,
-      totalCO2Emissions: totalCO2Emissions ?? this.totalCO2Emissions,
-      co2EmissionsClass: co2EmissionsClass ?? this.co2EmissionsClass,
       totalWeight: totalWeight ?? this.totalWeight,
       totalTime: totalTime ?? this.totalTime,
       cuisineType: cuisineType ?? this.cuisineType,
@@ -115,8 +109,6 @@ class Recipe {
       'ingredientLines': ingredientLines,
       'ingredients': ingredients.map((x) => x.toMap()).toList(),
       'calories': calories,
-      'totalCO2Emissions': totalCO2Emissions,
-      'co2EmissionsClass': co2EmissionsClass,
       'totalWeight': totalWeight,
       'totalTime': totalTime,
       'cuisineType': cuisineType,
@@ -146,8 +138,6 @@ class Recipe {
         ),
       ),
       calories: map['calories'] as double,
-      totalCO2Emissions: map['totalCO2Emissions'] as double,
-      co2EmissionsClass: map['co2EmissionsClass'] as String,
       totalWeight: map['totalWeight'] as double,
       totalTime: map['totalTime'] as double,
       cuisineType: List<String>.from(map['cuisineType'] as List<dynamic>),
@@ -163,7 +153,7 @@ class Recipe {
 
   @override
   String toString() {
-    return 'Recipe(uri: $uri, label: $label, image: $image, images: $images, source: $source, url: $url, shareAs: $shareAs, yield: $yield, dietLabels: $dietLabels, healthLabels: $healthLabels, cautions: $cautions, ingredientLines: $ingredientLines, ingredients: $ingredients, calories: $calories, totalCO2Emissions: $totalCO2Emissions, co2EmissionsClass: $co2EmissionsClass, totalWeight: $totalWeight, totalTime: $totalTime, cuisineType: $cuisineType, mealType: $mealType, dishType: $dishType)';
+    return 'Recipe(uri: $uri, label: $label, image: $image, images: $images, source: $source, url: $url, shareAs: $shareAs, yield: $yield, dietLabels: $dietLabels, healthLabels: $healthLabels, cautions: $cautions, ingredientLines: $ingredientLines, ingredients: $ingredients, calories: $calories, totalWeight: $totalWeight, totalTime: $totalTime, cuisineType: $cuisineType, mealType: $mealType, dishType: $dishType)';
   }
 
   @override
@@ -184,8 +174,6 @@ class Recipe {
         listEquals(other.ingredientLines, ingredientLines) &&
         listEquals(other.ingredients, ingredients) &&
         other.calories == calories &&
-        other.totalCO2Emissions == totalCO2Emissions &&
-        other.co2EmissionsClass == co2EmissionsClass &&
         other.totalWeight == totalWeight &&
         other.totalTime == totalTime &&
         listEquals(other.cuisineType, cuisineType) &&
@@ -209,8 +197,6 @@ class Recipe {
         ingredientLines.hashCode ^
         ingredients.hashCode ^
         calories.hashCode ^
-        totalCO2Emissions.hashCode ^
-        co2EmissionsClass.hashCode ^
         totalWeight.hashCode ^
         totalTime.hashCode ^
         cuisineType.hashCode ^
