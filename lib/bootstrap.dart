@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:recipe_app/config/app/app.dart';
 import 'package:recipe_app/core/utils/logger.dart';
 import 'package:recipe_app/presentation/injector/injector.dart';
@@ -41,15 +42,21 @@ class AppBlocObserver extends BlocObserver {
 }
 
 void bootstrap() {
-  WidgetsFlutterBinding.ensureInitialized();
-  configureDepedencies();
-  FlutterError.onError = (FlutterErrorDetails details) {
-    loggerError(details.exceptionAsString(), details.exception, details.stack);
-  };
-  Bloc.observer = AppBlocObserver();
-
   runZonedGuarded(
-    () => runApp(const App()),
+    () async {
+      await dotenv.load();
+      WidgetsFlutterBinding.ensureInitialized();
+      configureDepedencies();
+      FlutterError.onError = (FlutterErrorDetails details) {
+        loggerError(
+          details.exceptionAsString(),
+          details.exception,
+          details.stack,
+        );
+      };
+      Bloc.observer = AppBlocObserver();
+      runApp(const App());
+    },
     (error, stack) {
       loggerError(error.toString(), error, stack);
     },

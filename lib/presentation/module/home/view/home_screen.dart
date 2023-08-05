@@ -9,10 +9,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(
-      create: (context) => getIt(),
-      child: const Scaffold(
+      create: (context) => getIt()..add(const HomeInitial()),
+      child: Scaffold(
         body: Center(
-          child: Text('Home Screen'),
+          child: BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              return const Text('Home Screen');
+            },
+          ),
         ),
       ),
     );

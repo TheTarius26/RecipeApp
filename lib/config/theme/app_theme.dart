@@ -16,6 +16,6 @@ class AppTheme {
           primary: primaryColor,
           secondary: secondaryColor,
         ),
-        textTheme: font,
+        textTheme: font.copyWith(),
       );
 }
