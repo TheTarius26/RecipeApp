@@ -1,34 +1,42 @@
+// ignore_for_file: strict_raw_type
+
 import 'dart:async';
 
-import 'package:clean_arch_flutter_template/config/app/app.dart';
-import 'package:clean_arch_flutter_template/core/utils/logger.dart';
-import 'package:clean_arch_flutter_template/presentation/injector/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recipe_app/config/app/app.dart';
+import 'package:recipe_app/core/utils/logger.dart';
+import 'package:recipe_app/presentation/injector/injector.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
-  void onEvent(Bloc bloc, Object? event) {
-    super.onEvent(bloc, event);
-    // TODO: implement onEvent
-  }
-
-  @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    // TODO: implement onError
     super.onError(bloc, error, stackTrace);
+    loggerError('''
+    ${bloc.runtimeType}
+    error: $error
+    stackTrace: $stackTrace
+    ''');
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    // TODO: implement onChange
+    loggerDebug('''
+    ${bloc.runtimeType}
+    currentState: ${change.currentState}
+    nextState: ${change.nextState}
+    ''');
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    // TODO: implement onChange
+    loggerDebug('''
+    ${bloc.runtimeType}
+    event: ${transition.event}
+    state: ${transition.currentState}
+    ''');
   }
 }
 

@@ -17,7 +17,12 @@ void loggerError(
   Object? error,
   StackTrace? stackTrace,
 ]) {
-  Logger().e(message, error, stackTrace);
+  Logger().e(
+    message,
+    time: DateTime.now(),
+    error: error,
+    stackTrace: stackTrace,
+  );
 }
 
 void loggerWtf(String message) {
