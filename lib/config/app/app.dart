@@ -1,6 +1,6 @@
-import 'package:clean_arch_flutter_template/config/theme/app_theme.dart';
-import 'package:clean_arch_flutter_template/core/routes/route.dart';
 import 'package:flutter/material.dart';
+import 'package:recipe_app/config/theme/app_theme.dart';
+import 'package:recipe_app/core/routes/route.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

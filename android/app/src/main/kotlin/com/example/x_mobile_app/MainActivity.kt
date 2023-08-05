@@ -1,4 +1,4 @@
-package com.example.clean_arch_flutter_template
+package com.example.recipe_app
 
 import io.flutter.embedding.android.FlutterActivity
 
