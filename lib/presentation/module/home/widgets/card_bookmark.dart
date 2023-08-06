@@ -35,7 +35,7 @@ class CardBookmark extends StatelessWidget {
                 child: Image.network(
                   image,
                   errorBuilder: (context, error, stackTrace) {
-                    return Image.asset('assets/images/pizza.png');
+                    return const Text('Error');
                   },
                   width: 200,
                   fit: BoxFit.cover,
