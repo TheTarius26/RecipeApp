@@ -6,9 +6,10 @@ class AppTheme {
   static ThemeData get lightTheme => ThemeData(
         colorScheme: const ColorScheme.light(
           primary: primaryColor,
+          primaryContainer: primaryColorDark,
           secondary: secondaryColor,
         ),
-        textTheme: font,
+        textTheme: font.copyWith(),
       );
 
   static ThemeData get darkTheme => ThemeData(
