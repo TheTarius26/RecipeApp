@@ -5,8 +5,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:recipe_app/config/app/app.dart';
 import 'package:recipe_app/core/utils/logger.dart';
+import 'package:recipe_app/data/datasource/local/type_adapter/bookmark_hive.dart';
 import 'package:recipe_app/presentation/injector/injector.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -44,7 +46,10 @@ class AppBlocObserver extends BlocObserver {
 void bootstrap() {
   runZonedGuarded(
     () async {
+      await Hive.initFlutter();
+      Hive.registerAdapter(BookmarkAdapter());
       await dotenv.load();
+
       WidgetsFlutterBinding.ensureInitialized();
       configureDepedencies();
       FlutterError.onError = (FlutterErrorDetails details) {

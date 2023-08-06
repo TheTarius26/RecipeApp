@@ -6,8 +6,9 @@ import 'package:recipe_app/data/model/recipe/recipe_response.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
 
 @Singleton(order: 3)
-class GetRecipeByKeyword implements UseCase<RecipeResponse, RecipeParam> {
-  GetRecipeByKeyword(
+class GetRecipeByKeywordUseCase
+    implements UseCase<RecipeResponse, RecipeParam> {
+  GetRecipeByKeywordUseCase(
     this._recipeRepository,
   );
 
